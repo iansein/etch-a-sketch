@@ -1,0 +1,35 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+*:not(img),
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.square-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square {
+  flex: 1;
+  flex-shrink: 1;
+  height: 60px;
+  border: 1px solid black;
+}
