@@ -5,6 +5,9 @@ html {
 
 body {
   margin: 0;
+  border-bottom: 60px solid salmon;
+  border-left: 60px solid salmon;
+  border-right: 60px solid salmon;
 }
 
 *:not(img),
@@ -32,4 +35,20 @@ body {
   flex-shrink: 1;
   height: 60px;
   border: 1px solid black;
+}
+
+.square:hover {
+  background-color: black;
+}
+
+.button-container {
+  background-color: salmon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-squares {
+  padding: 16px;
+  border: 2px solid black;
+  margin: 25px 0px 25px 0px;
 }
