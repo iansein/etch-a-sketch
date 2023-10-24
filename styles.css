@@ -32,7 +32,6 @@ body {
 
 .square {
   flex: 1;
-  flex-shrink: 1;
   height: 60px;
   border: 1px solid black;
 }
@@ -51,4 +50,8 @@ body {
   padding: 16px;
   border: 2px solid black;
   margin: 25px 0px 25px 0px;
+}
+
+.pencil-cursor {
+  cursor: url("./assets/pencil.png"), auto;
 }
