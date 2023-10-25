@@ -4,7 +4,18 @@ const gridContainer = document.querySelector(".grid-container");
 const colorPicker = document.querySelector(".color-picker");
 const eraser = document.querySelector(".eraser");
 const pencil = document.querySelector(".pencil");
+const rainbow = document.querySelector(".rainbow");
+const rainbowColors = [
+  "#FF0000",
+  "#FF7F00",
+  "#FFFF00",
+  "#00FF00",
+  "#0000FF",
+  "#4B0082",
+  "#9400D3",
+];
 let eraserPressed = false;
+let rainbowPressed = false;
 gridContainer.classList.add("pencil-cursor");
 
 function initGrid(numberOfSquares) {
@@ -47,10 +58,6 @@ function draw() {
   let pressedMouse;
 
   square.forEach((square) => {
-    square.removeEventListener("mousedown", handleMouseDown);
-    square.removeEventListener("mouseup", handleMouseUp);
-    square.removeEventListener("mouseover", handleMouseOver);
-
     square.addEventListener("mousedown", handleMouseDown);
     square.addEventListener("mouseup", handleMouseUp);
     square.addEventListener("mouseover", handleMouseOver);
@@ -59,7 +66,13 @@ function draw() {
   function handleMouseDown(event) {
     event.preventDefault();
     pressedMouse = true;
-    this.style.backgroundColor = colorPicker.value;
+    if (eraserPressed) {
+      this.style.backgroundColor = "white";
+    } else if (rainbowPressed) {
+      this.style.backgroundColor = rainbowSquares();
+    } else {
+      this.style.backgroundColor = colorPicker.value;
+    }
   }
 
   function handleMouseUp(event) {
@@ -68,42 +81,19 @@ function draw() {
   }
 
   function handleMouseOver() {
-    if (pressedMouse) {
+    if (pressedMouse && !eraserPressed && !rainbowPressed) {
       this.style.backgroundColor = colorPicker.value;
+    } else if (pressedMouse && eraserPressed) {
+      this.style.backgroundColor = "white";
+    } else if (pressedMouse && rainbowPressed) {
+      this.style.backgroundColor = rainbowSquares();
     }
   }
 }
 
-function erase() {
-  const square = document.querySelectorAll(".square");
-  let pressedMouse;
-
-  square.forEach((square) => {
-    square.removeEventListener("mousedown", handleMouseDown);
-    square.removeEventListener("mouseup", handleMouseUp);
-    square.removeEventListener("mouseover", handleMouseOver);
-
-    square.addEventListener("mousedown", handleMouseDown);
-    square.addEventListener("mouseup", handleMouseUp);
-    square.addEventListener("mouseover", handleMouseOver);
-  });
-
-  function handleMouseDown(event) {
-    event.preventDefault();
-    pressedMouse = true;
-    this.style.backgroundColor = "white";
-  }
-
-  function handleMouseUp(event) {
-    event.preventDefault();
-    pressedMouse = false;
-  }
-
-  function handleMouseOver() {
-    if (pressedMouse) {
-      this.style.backgroundColor = "white";
-    }
-  }
+function rainbowSquares() {
+  const randomIndex = Math.floor(Math.random() * rainbowColors.length);
+  return rainbowColors[randomIndex];
 }
 
 window.addEventListener("load", () => {
@@ -124,13 +114,27 @@ buttonSquares.addEventListener("click", () => {
 });
 
 eraser.addEventListener("click", () => {
-  erase();
+  eraserPressed = true;
+  rainbowPressed = false;
   eraser.style.backgroundColor = "purple";
   pencil.style.backgroundColor = "transparent";
+  rainbow.style.backgroundColor = "transparent";
 });
 
 pencil.addEventListener("click", () => {
+  eraserPressed = false;
+  rainbowPressed = false;
   draw();
   pencil.style.backgroundColor = "purple";
   eraser.style.backgroundColor = "transparent";
+  rainbow.style.backgroundColor = "transparent";
+});
+
+rainbow.addEventListener("click", () => {
+  eraserPressed = false;
+  rainbowPressed = true;
+  draw();
+  rainbow.style.backgroundColor = "purple";
+  eraser.style.backgroundColor = "transparent";
+  pencil.style.backgroundColor = "transparent";
 });
