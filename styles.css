@@ -1,13 +1,16 @@
+@font-face {
+  font-family: "Bubble";
+  src: url(./assets/Bubblegum.ttf) format("truetype");
+}
+
 html {
+  background-color: rgb(170, 6, 170);
   box-sizing: border-box;
-  margin: 0;
 }
 
 body {
+  min-height: 140vh;
   margin: 0;
-  border-bottom: 60px solid salmon;
-  border-left: 60px solid salmon;
-  border-right: 60px solid salmon;
 }
 
 *:not(img),
@@ -16,7 +19,69 @@ body {
   box-sizing: inherit;
 }
 
+.header-container {
+  background-color: rgb(170, 6, 170);
+}
+
+.title {
+  font-family: Bubble;
+  color: rgb(31, 29, 29);
+  text-align: center;
+  font-size: 56px;
+  margin-top: 20px;
+}
+
+.button-container {
+  border: 2px solid black;
+  margin: 0 auto;
+  width: 100vh;
+  background-color: rgb(78, 0, 78);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  gap: 30px;
+}
+.button-squares,
+.button-clean {
+  border-radius: 10px;
+  padding: 16px;
+  border: 2px solid black;
+  margin: 20 0 20 0;
+  background-color: rgb(207, 205, 205);
+}
+
+.eraser {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.pencil {
+  background: purple;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+}
+.color-picker {
+  margin-left: 18px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  border-radius: 50%;
+}
+
 .grid-container {
+  margin: 0 auto;
+  border: black solid 2px;
+  width: 100vh;
+  height: 100vh;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,27 +96,7 @@ body {
 }
 
 .square {
+  border: 1px solid grey;
+  aspect-ratio: 1 / 1;
   flex: 1;
-  height: 60px;
-  border: 1px solid black;
-}
-
-.square:hover {
-  background-color: black;
-}
-
-.button-container {
-  background-color: salmon;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.button-squares {
-  padding: 16px;
-  border: 2px solid black;
-  margin: 25px 0px 25px 0px;
-}
-
-.pencil-cursor {
-  cursor: url("./assets/pencil.png"), auto;
 }
